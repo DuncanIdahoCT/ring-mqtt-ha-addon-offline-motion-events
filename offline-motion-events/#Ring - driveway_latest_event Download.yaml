@@ -1,0 +1,37 @@
+alias: "#Ring - driveway_latest_event Download"
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.driveway_motion
+    to: "on"
+condition: []
+action:
+  - wait_for_trigger:
+      - platform: state
+        entity_id:
+          - select.driveway_event_select
+        attribute: eventId
+    timeout:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: downloader.download_file
+    data:
+      url: "{{ states.select.driveway_event_select.attributes.recordingUrl }}"
+      filename: driveway_latest_event.mp4
+      overwrite: true
+  - service: downloader.download_file
+    data:
+      url: >-
+        http://homeassistant:8123{{
+        states.camera.driveway_snapshot.attributes.entity_picture }}
+      filename: driveway_snapshot.jpg
+      overwrite: true
+  - service: input_text.set_value
+    data:
+      value: "{{ now() }}"
+    target:
+      entity_id: input_text.driveway_timestamp
+mode: single
