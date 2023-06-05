@@ -5,7 +5,7 @@
 ![armhf-shield](https://img.shields.io/badge/armhf-yes-green.svg)
 ![armv7-shield](https://img.shields.io/badge/armv7-yes-green.svg)
 
-# Fork About
+# Fork About (v5.3.0)
 This fork includes some custom code and dashboard template ideas that extend the functionality of this amazing add-on so you can have each motion event (both the snapshot image and video) downloaded from Ring.com and automatically refreshed onto your Home Assistant dashboards. The possibilities to extend this to include event selection is there but I only did the work to show the latest event.
 
 ![Dashboard Card](/offline-motion-events/Driveway.png)
